@@ -1,0 +1,7 @@
+eksctl create cluster --name cluster1 --vpc-public-subnets=<subnet1>,<subnet2>,<subnet3>
+
+eksctl create nodegroup --cluster=cluster1 --nodes=2 --instance-types=t2.micro --node-ami-family=Bottlerocket
+
+aws eks --region ap-southeast-1 update-kubeconfig --name cluster1
+
+kubectl expose deployment nginx-deployment --type=LoadBalancer --name=my-service
